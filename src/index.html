@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <script>
+        var modernBrowser = (
+            'fetch' in window &&
+            'assign' in Object
+        );
+
+        console.log(modernBrowser);
+
+        if (!modernBrowser) {
+            var scriptElement = document.createElement('script');
+            var scriptElement2 = document.createElement('script');
+
+            scriptElement2.async = false;
+            scriptElement2.src = '/vendors~polyfills.bundle.js';
+            document.head.appendChild(scriptElement2);
+
+            scriptElement.async = false;
+            scriptElement.src = '/polyfills.bundle.js';
+
+            document.head.appendChild(scriptElement);
+        }
+    </script>
+</head>
+<body>
+<div id="app" class="app-wrapper">
+    <img src="./img/bird.png" alt="">
+</div>
+</body>
+</html>
