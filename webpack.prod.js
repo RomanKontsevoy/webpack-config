@@ -29,7 +29,8 @@ module.exports = merge(common, {
                         options: {
                             sourceMap: true
                         }
-                    }
+                    },
+                    'postcss-loader'
                 ]
             },
         ]
@@ -42,11 +43,11 @@ module.exports = merge(common, {
     ],
     optimization: {
         minimizer: [
-            // new UglifyJsPlugin({
-            //     cache: true,
-            //     parallel: true,
-            //     sourceMap: true // set to true if you want JS source maps
-            // }),
+            new UglifyJsPlugin({
+                cache: true,
+                parallel: true,
+                sourceMap: true // set to true if you want JS source maps
+            }),
             new OptimizeCSSAssetsPlugin({})
         ]
     },
