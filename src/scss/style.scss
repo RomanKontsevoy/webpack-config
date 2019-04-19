@@ -16,11 +16,9 @@ button {
 .app-wrapper {
   margin: auto;
   width: 1024px;
-  background: #eafeff;
   height: 100vh;
   position: relative;
   &:before {
-    content: '';
     display: block;
     width: 50px;
     height: 50px;
@@ -29,5 +27,74 @@ button {
     border-radius: 50%;
     left: calc(50% - 25px);
     top: calc(50% - 25px);
+  }
+}
+
+/* contacts */
+.rk-header-office-h3 {
+  color: #ffffff;
+  font-weight: 300;
+  font-size: 36px;
+  line-height: 40px;
+}
+
+.rk-header-address {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 20px;
+  position: relative;
+  padding-left: 25px;
+  &:hover {
+    color: #6bd3ff;
+  }
+  &:before {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 13px;
+    height: 20px;
+    left: 0;
+    top: 0;
+  }
+}
+
+.rk-header-phones {
+  margin-top: 17px;
+  padding-left: 25px;
+  position: relative;
+  &:before {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 16px;
+    height: 17px;
+    left: 0;
+    top: 0;
+  }
+  li {
+    list-style: none;
+  }
+  a {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: text;
+    pointer-events: none;
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}
+
+@media all and (max-width: 420px){
+  .rk-repr__item {
+    flex-direction: column;
+    height: auto;
+  }
+  .rk-repr-text__wrap {
+    margin-top: 15px;
   }
 }

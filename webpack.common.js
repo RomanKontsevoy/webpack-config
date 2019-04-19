@@ -3,26 +3,19 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const tinyPngWebpackPlugin = require('tinypng-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+let FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 
 module.exports = {
     entry: {
-        // polyfills: './src/js/polyfills.js',
+        polyfills: './src/js/polyfills.js',
         index: './src/js/index.js',
-        // core: './src/core_asset',
-        // olimpics: './src/olimpics_asset',
-        // edit_city: './src/edit_city',
     },
     output: {
         filename: 'js/[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
-    // optimization: {
-    //     splitChunks: { // общие импорты в разных файлах выделяем в отдельный
-    //         chunks: 'all'
-    //     }
-    // },
     module: {
         rules: [
             {
@@ -35,7 +28,7 @@ module.exports = {
                 loader: 'vue-loader'
             },
             {
-                test: /\.(png|svg|jpg|gif)$/,
+                test: /\.(png|svg|jpe?g|gif)$/,
                 use: [
                     {
                         loader: 'file-loader',
@@ -47,7 +40,7 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                test: /\.(ico|woff|woff2|eot|ttf|otf)$/,
                 use: [
                     'file-loader'
                 ]
@@ -63,16 +56,12 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Production',
             template: './src/index.html',
-            // chunks: ['index']
-        }),
-        new webpack.ProvidePlugin({
-            // _: 'lodash' // нужно для того, чтобы определенные модули были доступны в качестве переменной по всему проекту. Например, $: 'jquery'
         }),
         new webpack.HotModuleReplacementPlugin(),
         new VueLoaderPlugin(),
-        new tinyPngWebpackPlugin({
-            key:"VBDkBCpEXLRet4VLaS4IBUGdwNi6YQL4",
-            ext: ['png', 'jpeg', 'jpg'],//img ext name
-        })
+        new CopyPlugin([
+            { from: './src/sw.js', to: '' }
+        ]),
+        new FaviconsWebpackPlugin('./src/img/favicon.png')
     ],
 };
