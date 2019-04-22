@@ -9,7 +9,7 @@ module.exports = merge(common, {
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         hot: true,
-        port: 9001,
+        port: 9002,
         disableHostCheck: true
     },
     module: {
