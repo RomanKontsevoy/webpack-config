@@ -12,6 +12,11 @@ module.exports = merge(common, {
         port: 9002,
         disableHostCheck: true
     },
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js'
+        }
+    },
     module: {
         rules: [
             {

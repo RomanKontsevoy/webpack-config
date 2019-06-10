@@ -37,6 +37,11 @@ module.exports = merge(common, {
             },
         ]
     },
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.js'
+        }
+    },
     plugins: [
         new MiniCssExtractPlugin({
             filename: 'css/style.css',
